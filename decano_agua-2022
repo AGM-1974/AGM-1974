@@ -1,0 +1,34 @@
+#!/usr/bin/python3
+import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+import numpy as np
+import os
+import glob
+
+
+files = glob.glob('*.txt')
+
+#print('all_files=', all_files, len( all_files))
+
+
+frame = []
+
+for file in files:
+	df = pd.read_csv(file)
+	#df.rename(columns={'States:', 'State'}, inplace =True)
+
+	rdf, axs = plt.subplots()
+
+    axs.plot(df.iloc[:,0] , df.iloc[:,1], label='g(r*)',color='r')
+    axs.set_ylabel('g(r*)')
+    axs.legend(loc='best')
+    axs.set_xlim(0,20)
+    axs.grid()
+    plt.show() 
+
+rdf.savefig('figures/rdf.pdf')
+
+
+print('Frame =', frame)
